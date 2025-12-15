@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <title>Criador de Senhas</title>
+</head>
+<body>
+    <img id="logo" src="/Projetos/Criador de Senha/logo.png" alt="logo">
+    <h1>Gerador de senhas</h1>
+        <form id="formulario" action="">
+            <div class="pass">
+                <input type="text" id="resultado">
+                <svg class="refresh bi bi-arrow-clockwise" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                </svg>
+                <svg class="copy bi bi-copy" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+                </svg>
+            </div>
+            <div class="checks">
+                <div class="maiuscula">
+                    <input type="checkbox" id="plus" checked>
+                    <span>Letra Maiúscula</span>
+                </div>
+                <div class="minuscula">
+                    <input type="checkbox" id="minus" checked>
+                    <span>Letra Minúscula</span>
+                </div>
+                <div class="numeros">
+                    <input type="checkbox" id="number" checked>
+                    <span>Números</span>
+                </div>
+                <div class="simbolos">
+                    <input type="checkbox" id="simbols" checked>
+                    <span>Simbolos</span>
+                </div>
+                <div class="quantidade">
+                    <input type="range" min="6" max="12" id="range" step="1" value="8" oninput="valorSelecionado.value = this.value">
+                    <output id="valorSelecionado">8</output> 
+                </div>
+                <div class="button">
+                    <input type="submit" value="Gerar" id="imput">
+                </div>
+                <span id="successMsg" style="display: none; margin-top: 10px;">Senha copiada!</span>
+                <span id="erroMsg" style="display: none; margin-top: 10px;" >Selecione um campo</span>
+            </div>
+        </form>
+        
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background: linear-gradient(90deg, #540863, #92487A);
+                color: white;
+                font-family: sans-serif;
+            }
+
+            H1 {
+                padding-bottom: 5vh;
+            }
+
+            #logo {
+                max-height: 12rem;
+                }
+
+            #formulario {
+                display: flex;
+                flex-direction: column;
+                background: linear-gradient(90deg, #92487A, #E49BA6);
+                box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                border-radius: 20px;
+                padding: 60px;
+                min-width: 160px;
+            }
+
+            #resultado {
+                font-family: 'Fira Code', monospace;
+                width: 220px;
+            }
+
+            #formulario .refresh {
+                position:relative;
+                left: 4px;
+                top: 3px;
+                color: #000000;
+                cursor: pointer;
+            }
+
+            #formulario .refresh:hover {
+                color: #ffffff;
+                transition: 0.2s;
+            }
+
+            #formulario .copy {
+                position:relative;
+                right: 46px;
+                top: 3px;
+                color: #000000;
+                cursor: pointer;
+            }
+
+            #formulario .copy:hover {
+                color: #92487A;
+                transition: 0.2s;
+            }
+
+            .pass {
+                margin-bottom:18px ;
+            }
+
+            #range {
+                width: 200px;
+            }
+
+            .quantidade {
+                margin-top: 12px;
+            }
+
+            .button {
+                display: flex;
+                justify-content: center;
+                margin-top: 18px;
+            }
+
+            .button input[type="submit"] {
+                background-color: #DEDED1;
+                height: 32px;
+                width: 64px;
+                padding: 4px;
+                border: 1px solid #000000;
+                border-radius: 5px;
+            }
+
+            .button input[type="submit"]:hover {
+                background-color: #C5C7BC;
+                transition: 0.4s;
+            }
+            #successMsg, #erroMsg {
+                display: none;
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                font-weight: bold;
+                background: rgba(0,0,0,0.7);
+                color: white;
+                padding: 8px 16px;
+                border-radius: 6px;
+            }
+
+            #successMsg {
+                color: #00ff88;
+            }
+
+        </style>
+    <script>
+        const form = document.getElementById("formulario");
+        const resultado = document.getElementById("resultado");
+        const range = document.getElementById("range");
+        const refresh = document.querySelector(".refresh");
+        const copy = document.querySelector(".copy")
+
+        const plus = document.getElementById("plus");
+        const minus = document.getElementById("minus");
+        const number = document.getElementById("number");
+        const simbols = document.getElementById("simbols");
+
+        const successMsg = document.getElementById("successMsg")
+        const erroMsg = document.getElementById("erroMsg")
+
+        const letrasMaiusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const letrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
+        const numeros = "0123456789";
+        const simbolos = "!@#$%^&*()_+[]{}<>?/|";
+
+        function gerarSenha() {
+            let caracteres = ""
+
+            if (plus.checked) caracteres += letrasMaiusculas;
+            if (minus.checked) caracteres += letrasMinusculas;
+            if (number.checked) caracteres += numeros;
+            if (simbols.checked) caracteres += simbolos;
+
+            if (caracteres === "") {
+                erroMsg.style.display = "block";
+                setTimeout(() => erroMsg.style.display = "none", 2000);
+                return;
+            }
+
+            let senha ="";
+            const tamanho = parseInt(range.value);
+
+            for (let i=0; i < tamanho; i++) {
+                const randomIndex = Math.floor(Math.random() * caracteres.length);
+                senha += caracteres[randomIndex];
+            }
+
+            resultado.value = senha
+        }
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); 
+            gerarSenha();
+        });
+
+        copy.addEventListener("click", function () {
+            if (resultado.value) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(resultado.value)
+                        .then(() => {
+                            successMsg.style.display = "block";
+                            setTimeout(() => successMsg.style.display = "none", 2000);
+                        })
+                        .catch(err => {
+                            console.error("Erro ao copiar com clipboard API:", err);
+                            resultado.select();
+                            document.execCommand("copy");
+                            successMsg.style.display = "block";
+                            setTimeout(() => successMsg.style.display = "none", 2000);
+                        });
+                } else {
+                    // Fallback para navegadores antigos
+                    resultado.select();
+                    document.execCommand("copy");
+                    successMsg.style.display = "block";
+                    setTimeout(() => successMsg.style.display = "none", 2000);
+                }
+            } else {
+                erroMsg.style.display = "block";
+                setTimeout(() => erroMsg.style.display = "none", 2000);
+            }
+        });
+        refresh.addEventListener("click", function () { resultado.value = ""; });
+    </script>
+</body>
+</html>
